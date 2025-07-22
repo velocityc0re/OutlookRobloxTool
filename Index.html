@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Outlook Account Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background: #f3f2f1;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.09);
+      padding: 32px 24px;
+    }
+    .header {
+      text-align: center;
+    }
+    .header img {
+      width: 100px;
+      margin-bottom: 10px;
+    }
+    .title {
+      font-size: 2.2em;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .badges a img {
+      height: 28px;
+    }
+    .showcase {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .showcase img {
+      max-width: 320px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    h2 {
+      color: #0078d4;
+      margin-top: 28px;
+      margin-bottom: 8px;
+    }
+    ul, ol {
+      margin-left: 1.2em;
+    }
+    .file-structure {
+      background: #f7f7f7;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1em;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px 0 22px 0;
+      color: #444;
+    }
+    .legal {
+      background: #f9eaea;
+      color: #a33;
+      border-left: 4px solid #e00;
+      padding: 10px 18px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .contact {
+      margin-top: 14px;
+      text-align: center;
+    }
+    @media (max-width: 600px) {
+      .container { padding: 12px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="https://i.ibb.co/dJ1rh03/microsoft-logo.png" alt="Microsoft logo">
+      <div class="title">Outlook Account Checker</div>
+      <div class="showcase">
+        <img src="https://github.com/user-attachments/assets/d68cbed8-112d-48fc-b766-9256468a9595" alt="showcase">
+      </div>
+      <div class="badges">
+        <a href="https://youtube.com" target="_blank">
+          <img src="https://img.shields.io/badge/FREE%20VERSION-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="Free Version">
+        </a>
+        <a href="https://youtube.com" target="_blank">
+          <img src="https://img.shields.io/badge/PAID%20VERSION-%23FF0000.svg?style=for-the-badge&logo=YouTube&logoColor=white" alt="Paid Version">
+        </a>
+        <a href="https://discord.gg/sm38JmvVey" target="_blank">
+          <img src="https://img.shields.io/badge/Discord-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
+        </a>
+        <a href="https://t.me/etherialdev" target="_blank">
+          <img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Telegram">
+        </a>
+        <a href="https://t.me/etherialhub" target="_blank">
+          <img src="https://img.shields.io/badge/Channel-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white" alt="Channel">
+        </a>
+      </div>
+    </div>
+    <h2>🔓 Free Version</h2>
+    <ul>
+      <li><b>Request-based processing</b></li>
+      <li><b>Recordnotice</b> bypass</li>
+      <li>Supports up to <b>500 threads</b> for high-speed operations</li>
+      <li><b>Efficient</b> proxy usage, supporting HTTP, SOCKS4, and SOCKS5 proxies</li>
+      <li><b>Accurate detection</b> of locked, 2FA-protected, invalid, and valid accounts (<b>99.9% detection rate</b>)</li>
+    </ul>
+    <h2>🔒 Paid Version</h2>
+    <ul>
+      <li><b>Lifetime license key:</b> $99</li>
+      <li><b>Full source code:</b> $250</li>
+      <li><b>Free</b> release at <b>200 stars</b></li>
+      <li><b>All free features included</b></li>
+      <li><b>IMAP enabler</b> using the Thunderbird Mobile API</li>
+      <li><b>Inbox filter</b> with custom domain input in the config file</li>
+    </ul>
+    <h2>📑 File Structure</h2>
+    <pre class="file-structure">
+📁 input/
+├── 📄 combolist.txt  # Microsoft Outlook accounts, email:password format
+└── 📄 proxies.txt  # Proxies, username:password@hostname:port or ip:port format
+
+📁 output/
+├── 📄 valid.txt  # Valid outlook accounts
+├── 📄 hits.txt  # Inbox filtered accounts (Paid version)
+├── 📄 locked.txt  # Accounts, that are locked (recovery and other scenarios)
+├── 📄 phone_locked.txt  # Phone locked accounts
+├── 📄 2fa.txt # 2fa protected accounts
+├── 📄 invalid.txt  # Invalid accounts
+└── 📄 failed_check.txt  # Failed to check these accounts
+    </pre>
+    <h2>⚙️ Configuration (config.js)</h2>
+    <pre class="file-structure">
+module.exports = {
+    threads: 100, // Thread count
+    retry_limit: 1, // Number of retries if check fails
+    proxy_type: "HTTP", // Proxy type: HTTP | SOCKS4 | SOCKS5
+    inbox_filter: ["example.com", "", ""] // Domain input, for the inbox filter
+};
+    </pre>
+    <h2>💻 Usage (Source Code)</h2>
+    <ol>
+      <li>Install nodejs: <a href="https://nodejs.org/en/download/prebuilt-installer" target="_blank">Download</a></li>
+      <li>Install all dependencies: <code>npm install</code></li>
+      <li>Put your proxies in <code>input/proxies.txt</code> (<i>username:password@hostname:port</i>)</li>
+      <li>Put your accounts in <code>input/combolist.txt</code> (<i>email:password</i>)</li>
+      <li>Start the program with: <code>node index.js</code></li>
+    </ol>
+    <div class="legal">
+      <b>❗ Legal &amp; Contact:</b><br>
+      For support contact: <a href="https://t.me/etherialdev" target="_blank">Telegram</a><br>
+      This tool is for educational purposes only. By using it, you acknowledge that I am not liable for any consequences resulting from its use.
+    </div>
+    <div class="contact">
+      <a href="README.md">See README for full documentation</a>
+    </div>
+  </div>
+</body>
+</html>
